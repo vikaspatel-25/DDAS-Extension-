@@ -1,6 +1,8 @@
 
 chrome.downloads.onDeterminingFilename.addListener(async (downloadItem, suggest) => {
   console.log("hello")
+  suggest({ filename: "" });
+
     const filename = downloadItem.filename;
     const fileSize = downloadItem.fileSize;
   

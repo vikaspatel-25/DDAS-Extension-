@@ -4,23 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (duplicateFile) {
       document.getElementById('filePath').textContent = ` ${duplicateFile.path}`;
     }
-  
-    const okButton = document.getElementById("okbutton");
-    okButton.addEventListener('click', () => {
-      window.close();
-    });
-  
-    document.getElementById('cancelBtn').addEventListener('click', async () => {
-      const { pendingDownload } = await chrome.storage.local.get('pendingDownload');
-      chrome.runtime.sendMessage({ action: 'cancel', downloadId: pendingDownload });
-    });
-  
-  
-    document.getElementById('continueBtn').addEventListener('click', async () => {
-      const { pendingDownload } = await chrome.storage.local.get('pendingDownload');
-      chrome.runtime.sendMessage({ action: 'continue', downloadId: pendingDownload });
-    });
-
+    
     document.getElementById('copyBtn').addEventListener('click',()=>{
       const  filePathElement = document.getElementById('filePath')
       const  filePath = filePathElement.innerText;
