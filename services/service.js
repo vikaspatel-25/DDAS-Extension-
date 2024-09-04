@@ -1,7 +1,7 @@
 
 chrome.downloads.onDeterminingFilename.addListener(async (downloadItem, suggest) => {
-  console.log("hello")
-  suggest({ filename: "" });
+  console.log("A download request has recieved")
+ 
 
     const filename = downloadItem.filename;
     const fileSize = downloadItem.fileSize;
@@ -19,7 +19,7 @@ chrome.downloads.onDeterminingFilename.addListener(async (downloadItem, suggest)
         },
         body: JSON.stringify(data)
       });
-      console.log("hello2");
+     
       const result = await response.json();
   
       if (result.exist) {
@@ -37,23 +37,23 @@ chrome.downloads.onDeterminingFilename.addListener(async (downloadItem, suggest)
         });
 
         // Open the extension popup for the user to make a decision
-        chrome.tabs.create({
-          url: chrome.runtime.getURL("index.html"),
-          active:true
-          });  
+        // chrome.tabs.create({
+        //   url: chrome.runtime.getURL("index.html"),
+        //   active:true
+        //   });  
         
-          // Suggest an empty filename to temporarily hold the download
-        suggest({ filename: "" });
+        //   // Suggest an empty filename to temporarily hold the download
+        // suggest({ filename: "" });
   
       } 
       if(result.msg){
        console.log(result.msg)
-       suggest({ filename: filename });
+      //  suggest({ filename: filename });
       }
   
     } catch (error) {
       console.log('Error checking file on server:', error);
-      suggest({ filename: filename });
+      // suggest({ filename: filename });
     }
   });
 
